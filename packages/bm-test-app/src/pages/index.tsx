@@ -32,7 +32,8 @@ const Index: FC = () => {
               <Card.Content>
                 {loading ? 'Loading...' : ''}
                 {extensions?.map((ext) => {
-                  return <ext.Component />;
+                  const Component = (ext as any).Component;
+                  return <Component customKey="customValue" />;
                 })}
               </Card.Content>
             </Card>
