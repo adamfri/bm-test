@@ -1,13 +1,26 @@
-import React, { FC } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useState, FC, useEffect } from 'react';
 import { useTranslation, useAppLoaded, Trans } from '@wix/yoshi-flow-bm';
 import { Page, Layout, Cell, Card, Text } from 'wix-style-react';
+import { Extension, getHostContainer } from '@wix/business-manager-api';
 
-const introUrl = 'https://github.com/wix-private/business-manager';
+const CONTAINER_DEV_CENTER_COMP_ID = '0cb1ba69-9953-4a1b-b653-ddc671e014e9';
 
 const Index: FC = () => {
   useAppLoaded({ auto: true });
 
+  const [extensions, setExtensions] = useState<Extension<any>[]>();
+  const [loading, setLoading] = useState(true);
+
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const { getExtensions } = getHostContainer(CONTAINER_DEV_CENTER_COMP_ID);
+    getExtensions().then((ext) => {
+      setExtensions(ext);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <Page>
@@ -17,11 +30,10 @@ const Index: FC = () => {
           <Cell>
             <Card>
               <Card.Content>
-                <Text dataHook="get-started">
-                  <Trans i18nKey="app.get-started">
-                    GET STARTED <a href={introUrl}>HERE</a>
-                  </Trans>
-                </Text>
+                {loading ? 'Loading...' : ''}
+                {extensions?.map((ext) => {
+                  return <ext.Component />;
+                })}
               </Card.Content>
             </Card>
           </Cell>
