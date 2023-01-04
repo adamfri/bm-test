@@ -1,0 +1,20 @@
+{
+  "$schema": "target/schemas/.application.schema.json",
+  "moduleId": "BM_TEST_APP",
+  "appDefinitionId": "4ce39f5a-4931-499a-8980-4892cea804f5",
+  "isCoreService": true,
+  "routeNamespace": "bm-test-app",
+  "translations": {
+    "enabled": true
+  },
+  "sentry": {
+    "DSN": "https://ef837477fd2f47b49d83e4e65e78a775@sentry.wixpress.com/4520",
+    "id": "ef837477fd2f47b49d83e4e65e78a775",
+    "projectName": "bm-test-app",
+    "teamName": "jnanjnjkadas",
+    "errorMonitor": true
+  },
+  "enabledByExperiments": [
+    "specs.infra.yoshi-bm.ChangeMe"
+  ]
+}
