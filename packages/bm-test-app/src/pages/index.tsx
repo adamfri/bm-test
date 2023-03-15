@@ -30,7 +30,7 @@ const Index: FC = () => {
           <Cell>
             <Card>
               <Card.Content>
-                {loading ? 'Loading...' : ''}
+                {loading ? 'Working...' : ''}
                 {extensions?.map((ext) => {
                   const Component = (ext as any).Component;
                   return <Component customKey="customValue" />;
